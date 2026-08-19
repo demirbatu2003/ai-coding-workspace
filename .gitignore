@@ -1,0 +1,29 @@
+# Self-install ile üretilen kopyalar — tek kaynak skills/ ve hooks/
+.claude/skills/
+.claude/hooks/
+
+# Windows
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS / Linux
+.DS_Store
+*~
+
+# Editör
+.vscode/*
+!.vscode/settings.json
+.idea/
+*.swp
+
+# Geçici / test çıktısı
+tmp/
+temp/
+*.log
+test-output/
+.ai-workspace-test/
+
+# Ortam
+.env
+.env.local

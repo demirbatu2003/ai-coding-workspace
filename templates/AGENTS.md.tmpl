@@ -1,0 +1,81 @@
+# AGENTS.md — <!-- DOLDUR: proje adı -->
+
+<!--
+  DOLDURMA REHBERİ (doldurduktan sonra bu yorumu sil)
+  - Bu dosya bu projede çalışan tüm AI ajanlarının okuduğu tek kaynaktır.
+  - 200 satırı geçme. Her satır her oturumda token ve dikkat maliyetidir.
+  - Kodda veya git geçmişinde zaten görünen hiçbir şeyi buraya yazma:
+    klasör yapısı, dosya adları, bağımlılık listesi, fonksiyon isimleri.
+  - Buraya yalnızca ajanın tahmin EDEMEYECEĞİ şeyler yazılır.
+  - Bu dosyayı AI'a yazdırma. Ölçülmüş şekilde zararlıdır: model kodda zaten görünen
+    şeyleri özetleyip dosyayı şişirir, başarı düşer ve maliyet artar.
+-->
+
+<!-- DOLDUR: bu proje ne yapıyor, 1-2 cümle. Kodda görünmeyen bağlamı yaz. -->
+
+## Komutlar
+
+<!-- Ajanın tahmin etmek zorunda kalmaması gereken komutlar. Yanlış tahmin en sık zaman kaybı. -->
+
+- Kurulum: <!-- DOLDUR: örn. npm ci -->
+- Çalıştır: <!-- DOLDUR: örn. npm run dev -->
+- Test: <!-- DOLDUR: örn. pytest -q / npm test -->
+- Tek test: <!-- DOLDUR: örn. pytest -q tests/test_x.py::test_y -->
+- Lint / format: <!-- DOLDUR: örn. ruff check . -->
+- Build: <!-- DOLDUR -->
+
+## Yönlendirme
+
+<!-- Ajanın nereye bakacağını bilmesi, gereksiz dosya okumasını ve bağlam israfını önler. -->
+
+- <!-- DOLDUR: örn. "API değişikliği yapacaksan önce src/api/ içine bak" -->
+- <!-- DOLDUR: örn. "Veritabanı şeması için docs/schema.md oku, migration'ları tarama" -->
+- Okumaya gerek yok: <!-- DOLDUR: örn. generated/, vendor/, dist/, *.lock -->
+
+## Kısıtlar ve tuzaklar
+
+<!-- Koda bakarak anlaşılmayan, tekrar tekrar yapılan hatalar. Zamanla buraya eklenir. -->
+
+- <!-- DOLDUR: örn. "migration dosyaları elle düzenlenmez, generator ile üretilir" -->
+- <!-- DOLDUR: örn. "config/prod.yaml asla değiştirilmez" -->
+- <!-- DOLDUR: örn. "X kütüphanesinin Y fonksiyonu bozuk, Z kullan" -->
+
+Ajan aynı yanlış varsayımı ikinci kez yaparsa, o varsayımın düzeltmesi buraya eklenir.
+
+## Konvansiyonlar
+
+<!-- Yalnızca aracın varsayılanından FARKLI olanlar. Linter/formatter'ın zaten zorladığı
+     stil kurallarını buraya yazma — o iş linter'ın. -->
+
+- <!-- DOLDUR: örn. "paket yöneticisi npm değil pnpm" -->
+- <!-- DOLDUR -->
+
+## Oturum sürekliliği
+
+Bu projede oturumlar arası durum diskte tutulur:
+
+| Dosya | Rol |
+|---|---|
+| `docs/STATE.md` | Şu an neredeyiz: faz, son yapılanlar, açık işler, sıradaki adım |
+| `docs/handoffs/<tarih>.md` | O oturumda ne oldu, ne denendi, ne işe yaramadı |
+| `docs/DECISIONS.md` | Koddan anlaşılmayan neden'ler |
+| `PLANS.md` | Uzun görevin adımları ve ilerlemesi |
+
+- Oturuma başlarken `/resume` çalıştırılır (veya `docs/STATE.md` okunur).
+- Oturum kapanmadan önce `/handoff` çalıştırılır.
+- `PLANS.md`'de bir madde `[x]` işaretlenmeden önce diskte gerçekten var olduğu doğrulanır.
+
+## Değişiklik yaparken
+
+1. İlgili kodu oku ve anla.
+2. Değişikliği küçük ve tek konuya odaklı tut.
+3. Test ve lint çalıştır; sonucu varsayma, gör.
+4. Başarısız olan bir yaklaşım varsa handoff'a yaz — tekrar denenmesini önler.
+
+## İnsan kontrolü
+
+Şu işlemler açık onay gerektirir: veri silme, geri döndürülemez işlemler,
+production değişiklikleri, credential/secret işlemleri, toplu dosya silme,
+git history değiştirme.
+
+<!-- DOLDUR: bu projeye özel ek onay gerektiren işlemler varsa yaz -->
