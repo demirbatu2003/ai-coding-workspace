@@ -33,10 +33,10 @@ altyapısı hub'ı oluşturmak. Kapsamlı içerik için IMPLEMENTATION-PLAN.md.
 
 ### M1 — Skills
 
-- [ ] skills/handoff/SKILL.md frontmatter eklendi, iki-dosya modeline göre revize edildi
-- [ ] skills/resume/SKILL.md yazıldı
-- [ ] skills/plan/SKILL.md yazıldı
-- [ ] skills/review/SKILL.md yazıldı
+- [x] skills/handoff/SKILL.md frontmatter eklendi, iki-dosya modeline göre revize edildi
+- [x] skills/resume/SKILL.md yazıldı
+- [x] skills/plan/SKILL.md yazıldı
+- [x] skills/review/SKILL.md yazıldı
 
 ### M2 — Hooks
 
@@ -60,9 +60,10 @@ altyapısı hub'ı oluşturmak. Kapsamlı içerik için IMPLEMENTATION-PLAN.md.
 
 ## Mevcut İlerleme
 
-- Mevcut aşama: M0 tamamlandı, M1'e (Skills) geçiliyor
-- Genel durum: Kök dosyalar, şablonlar, durum dosyaları ve ilk handoff tamam. Sıradaki iş
-  skills/handoff/SKILL.md'ye frontmatter eklemek ve diğer 3 skill'i yazmak.
+- Mevcut aşama: M1 tamamlandı, M2'ye (Hooks) geçiliyor
+- Genel durum: 4 skill de frontmatter'lı ve gövdeleri 60 satır sınırının altında yazıldı.
+  Skill yüklemesi henüz Claude Code'da test edilmedi (bkz. Doğrulama adımları). Sıradaki
+  iş hooks/session-start ve hooks/pre-compact.
 
 ## Kararlar
 

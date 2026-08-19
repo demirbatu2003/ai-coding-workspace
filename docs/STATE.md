@@ -2,35 +2,34 @@
 
 ## Hedef
 
-M1'i (Skills) tamamlamak: `skills/handoff/SKILL.md`'ye geçerli YAML frontmatter eklemek
-ve iki-dosya modeline göre revize etmek, `resume`/`plan`/`review` skill'lerini sıfırdan
-yazmak.
+M2'yi (Hooks) tamamlamak: `hooks/session-start.ps1`+`.sh` ve
+`hooks/pre-compact.ps1`+`.sh` yazmak, `settings/settings.json.fragment` oluşturmak.
 
 ## Mevcut Durum
 
 - Branch: master
-- Working tree: M0 kapanış commit'i atılacak (bu STATE güncellemesi dahil)
+- Working tree: 4 skill dosyası + PLANS.md/STATE.md güncellemesi henüz commit'lenmedi
 - Build: N/A
-- Test: henüz yok
+- Test: skill'lerin Claude Code'da gerçekten yüklendiği (frontmatter geçerliliği) henüz
+  canlı test edilmedi — yalnızca dosya yapısı ve satır sayısı elle doğrulandı
 
 ## Devam Eden İş
 
-Yok — M0 tamamlandı, M1 henüz başlamadı.
+Yok — M1 (dosya bazında) tamamlandı, M2 henüz başlamadı.
 
 ## Sonraki Adımlar
 
-1. `skills/handoff/SKILL.md`'ye frontmatter ekle (`name: handoff`, tetikleyici bir
-   `description`) ve gövdeyi iki-dosya modeline göre revize et: STATE.md güncelleme +
-   `docs/handoffs/<tarih>.md` yazma, tek dosyaya yazma değil.
-2. `skills/resume/SKILL.md` yaz: STATE.md + en yeni handoff + git log/status oku,
-   kısa özet + sıradaki adım öner.
-3. `skills/plan/SKILL.md` yaz: implement etmeden planla, PLANS.md'ye adım listesi yaz.
-4. `skills/review/SKILL.md` yaz: diff'i edit etmeden incele.
-5. M2'ye geç: hooks/ ve settings/ hâlâ boş.
+1. `hooks/session-start.ps1` + `.sh` yaz: STATE.md + en yeni handoff + git log/status'u
+   stdout'a bas. Dosyalar yoksa sessizce çık.
+2. `hooks/pre-compact.ps1` + `.sh` yaz: compaction öncesi hatırlatma + git durumu.
+3. `settings/settings.json.fragment` yaz: hook kayıtları.
+4. M5'teki self-install ile (`.\install.ps1 -Target .`) skill'lerin Claude Code'da `/`
+   yazınca gerçekten listelendiğini doğrula — bu M1'in gerçek doğrulaması, henüz yapılmadı.
 
 ## Açık Problemler
 
-Yok.
+Skill'lerin frontmatter'ı elle/statik olarak doğru görünüyor ama Claude Code'da canlı
+yüklendiği test edilmedi. `install.ps1` (M3) yazılmadan bu test yapılamaz.
 
 ## Son Güncelleme
 
