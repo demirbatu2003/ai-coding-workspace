@@ -146,10 +146,44 @@ Ancak kritik veya geri döndürülmesi zor işlemler açık kurallar ve güvenli
 
 # 4. Sistem Mimarisi
 
-Sistem aşağıdaki temel bileşenlerden oluşur:
+## 4.1 Hub ve Hedef Ayrımı
+
+Bu proje iki ayrı dünyayı bir arada barındırır ve bu ikisi birbirine karıştırılmamalıdır:
+
+- **Hub** — bu repo (`ai-coding-workspace`). Altyapıyı *üretir* ve *dağıtır*. Kendi
+  geliştirmesi için kendi `AGENTS.md`, `PLANS.md` ve `docs/` dosyalarını kullanır.
+- **Hedef** — hub'ın `install` ile kurulduğu, kullanıcının gerçek yazılım projesi. Hub'ın
+  ürettiği dosyaları alır, ama hub'ın kendi geliştirme sürecinden habersizdir.
 
 ```text
-                    AI Coding Workspace
+ai-coding-workspace/  (HUB — dağıtan)              herhangi-bir-proje/  (HEDEF — üretilen)
+│                                                    │
+├── AGENTS.md, CLAUDE.md, PLANS.md    kendi           ├── AGENTS.md   ◄─┐
+├── docs/ (architecture, STATE,       geliştirmesi    ├── CLAUDE.md    │  templates/*.tmpl
+│         DECISIONS, handoffs)        için, hedefe    ├── PLANS.md     │  buradan üretilir
+│                                     kopyalanmaz      ├── docs/       │
+│                                                      │   STATE.md   ◄┘
+├── templates/*.md.tmpl  ──┐                          │   DECISIONS.md
+├── skills/*/SKILL.md      │  install.ps1/.sh          │   handoffs/
+├── hooks/*.ps1 .sh        │  ile kopyalanır  ───────► ├── .claude/
+├── settings/*.fragment    │                           │   ├── skills/   ◄── skills/ kopyası
+│                          │                           │   ├── hooks/    ◄── hooks/ kopyası
+├── scripts/doctor.*       │  hub'ın kendi aracı,      │   └── settings.json
+├── VERSION                │  hedefe kopyalanmaz       └── .ai-workspace/version.json
+│                          │
+└── .claude/  (gitignore — self-install çıktısı, hub'ın kendi geliştirmesi için)
+```
+
+**Kural:** Hub kökündeki hiçbir dosya (`AGENTS.md`, `PLANS.md`, `docs/`) doğrudan hedefe
+kopyalanmaz. Hedefe giden her şey `templates/`, `skills/`, `hooks/`, `settings/` altında
+yaşar ve `.tmpl` gibi bir işaretle şablon olduğu belli edilir. Yeni bir dosya eklerken
+sorulacak soru: *"Bu, hub'ın kendi geliştirmesi için mi, yoksa install ile hedefe mi
+gidecek?"* Cevap ikisiyse, dosya ikiye bölünmesi gerekiyor demektir.
+
+## 4.2 Bileşenler
+
+```text
+                    AI Coding Workspace (Hub)
                            │
                            ▼
                       AGENTS.md
@@ -163,12 +197,16 @@ Sistem aşağıdaki temel bileşenlerden oluşur:
           │                │
           ▼                ▼
        Scripts          Validation
-          │
+          │              (doctor)
           └───────────────┬───────────────┘
                           ▼
-                       Project
+                    install.ps1/.sh
                           │
-              ┌───────────┴───────────┐
-              ▼                       ▼
-          Handoff                    Plans
-       Oturum devri             Uzun görevler
+                          ▼
+                    Hedef Proje
+                          │
+              ┌───────────┼───────────┐
+              ▼           ▼           ▼
+          STATE.md    handoffs/     PLANS.md
+        Şu an neredeyiz  Oturum      Uzun görevler
+                         devri
