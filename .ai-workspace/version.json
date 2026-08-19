@@ -1,0 +1,16 @@
+﻿{
+    "hubVersion":  "0.1.0",
+    "installedAt":  "2026-08-19T19:31:54",
+    "installedFiles":  [
+                           ".claude\\skills\\handoff\\SKILL.md",
+                           ".claude\\skills\\plan\\SKILL.md",
+                           ".claude\\skills\\resume\\SKILL.md",
+                           ".claude\\skills\\review\\SKILL.md",
+                           ".claude\\hooks\\pre-compact.ps1",
+                           ".claude\\hooks\\pre-compact.sh",
+                           ".claude\\hooks\\session-start.ps1",
+                           ".claude\\hooks\\session-start.sh",
+                           ".claude\\settings.json (SessionStart eklendi)",
+                           ".claude\\settings.json (PreCompact eklendi)"
+                       ]
+}

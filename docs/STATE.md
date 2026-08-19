@@ -2,34 +2,47 @@
 
 ## Hedef
 
-M2'yi (Hooks) tamamlamak: `hooks/session-start.ps1`+`.sh` ve
-`hooks/pre-compact.ps1`+`.sh` yazmak, `settings/settings.json.fragment` oluşturmak.
+M5'in asıl doğrulama testini tamamlamak: `/handoff` → `/clear` → `/resume` döngüsünü
+uçtan uca çalıştırıp, yeni bir oturumun eski konuşma geçmişi olmadan doğru yerden devam
+edebildiğini kanıtlamak. Bu, projenin varlık sebebinin doğrulanmasıdır.
 
 ## Mevcut Durum
 
 - Branch: master
-- Working tree: 4 skill dosyası + PLANS.md/STATE.md güncellemesi henüz commit'lenmedi
+- Working tree: M2 (hooks + settings fragment) ve M3 (install.ps1 + install.sh) dosya
+  bazında tamam ama commit'lenmedi. Untracked: `install.ps1`, `install.sh`, `hooks/*`,
+  `settings/settings.json.fragment`, `.claude/settings.json`, `.ai-workspace/version.json`.
+  (`.claude/skills/`, `.claude/hooks/` doğru şekilde gitignore'da, staged olmuyor.)
 - Build: N/A
-- Test: skill'lerin Claude Code'da gerçekten yüklendiği (frontmatter geçerliliği) henüz
-  canlı test edilmedi — yalnızca dosya yapısı ve satır sayısı elle doğrulandı
+- Test: install.ps1 dry-run + gerçek çalıştırmayla test edildi (hub kendi kendine
+  kuruldu). install.sh yalnızca syntax kontrolünden geçti, gerçek çalıştırma testi yok.
+  Skill yüklemesi canlı doğrulandı (4 skill de Claude Code'da listelendi).
 
 ## Devam Eden İş
 
-Yok — M1 (dosya bazında) tamamlandı, M2 henüz başlamadı.
+M5 uçtan uca testi başlıyor: küçük bir değişiklik yapılacak, `/handoff` çalıştırılacak,
+`/clear`, sonra `/resume` ile sonuç değerlendirilecek.
 
 ## Sonraki Adımlar
 
-1. `hooks/session-start.ps1` + `.sh` yaz: STATE.md + en yeni handoff + git log/status'u
-   stdout'a bas. Dosyalar yoksa sessizce çık.
-2. `hooks/pre-compact.ps1` + `.sh` yaz: compaction öncesi hatırlatma + git durumu.
-3. `settings/settings.json.fragment` yaz: hook kayıtları.
-4. M5'teki self-install ile (`.\install.ps1 -Target .`) skill'lerin Claude Code'da `/`
-   yazınca gerçekten listelendiğini doğrula — bu M1'in gerçek doğrulaması, henüz yapılmadı.
+1. Küçük, git'te görülür bir değişiklik yap.
+2. `/handoff` çalıştır — `docs/handoffs/2026-08-19.md` zaten var, aynı gün ikinci
+   handoff'ta ne olacağı açık soru (bkz. PLANS.md § Açık Sorular). Gerçek davranışı
+   gözlemleyip karar ver.
+3. `/clear` — hemen sonra SessionStart hook'unun otomatik context enjekte edip
+   etmediğini gözlemle.
+4. `/resume` — özetin doğruluğunu, adım 1'deki değişikliği yansıtıp yansıtmadığını
+   kontrol et. `skills/resume` ile Claude Code'un kendi resume'unun çakışıp
+   çakışmadığına dikkat et (açık soru).
+5. Test geçerse: M2+M3 dosyalarını commit'le, açık soruları karara bağla
+   (docs/DECISIONS.md'ye yaz), M4'e (doctor) geç.
 
 ## Açık Problemler
 
-Skill'lerin frontmatter'ı elle/statik olarak doğru görünüyor ama Claude Code'da canlı
-yüklendiği test edilmedi. `install.ps1` (M3) yazılmadan bu test yapılamaz.
+Üç açık tasarım sorusu var, ayrıntı `PLANS.md` § Açık Sorular'da:
+1. Aynı gün ikinci `/handoff` çakışması (üzerine yaz mı, farklı isim mi).
+2. `skills/resume` adının Claude Code'un yerleşik resume özelliğiyle çakışması.
+3. `.ai-workspace/version.json` gitignore'a girmeli mi (şu an girmiyor).
 
 ## Son Güncelleme
 
