@@ -20,7 +20,10 @@ if (Test-Path $statePath) {
 }
 
 if (Test-Path $handoffsDir) {
-    $latest = Get-ChildItem $handoffsDir -Filter "*.md" | Sort-Object Name -Descending | Select-Object -First 1
+    # Dosya adina gore siralama YANLIS sonuc verir: "2026-08-20.md" ile
+    # "2026-08-20-3.md" karsilastiginda "." karakteri "-"'den buyuk oldugu icin
+    # eksiz olan (en eski) dosya "en yeni" sanilir. LastWriteTime guvenilir olan.
+    $latest = Get-ChildItem $handoffsDir -Filter "*.md" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
     if ($latest) {
         Write-Output "## En yeni handoff: $($latest.Name)"
         Write-Output ""

@@ -18,7 +18,10 @@ if [ -f "$state" ]; then
 fi
 
 if [ -d "$handoffs" ]; then
-  latest=$(ls -1 "$handoffs"/*.md 2>/dev/null | sort -r | head -n 1)
+  # Dosya adina gore siralama (sort -r) YANLIS sonuc verir: "2026-08-20.md" ile
+  # "2026-08-20-3.md" karsilastiginda "." karakteri "-"'den buyuk oldugu icin
+  # eksiz olan (en eski) dosya "en yeni" sanilir. -t (degistirilme zamani) guvenilir.
+  latest=$(ls -t "$handoffs"/*.md 2>/dev/null | head -n 1)
   if [ -n "$latest" ]; then
     echo "## En yeni handoff: $(basename "$latest")"
     echo ""

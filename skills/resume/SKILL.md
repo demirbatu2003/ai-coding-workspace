@@ -17,8 +17,10 @@ Bu skill, hook kurulu değilken veya kullanıcı elle `/resume` çağırdığın
 ## Oku
 
 1. `docs/STATE.md` — şu anki hedef, durum, sıradaki adımlar, açık problemler.
-2. `docs/handoffs/` içindeki **en yeni** dosya (tarihe göre sırala) — son oturumda ne
-   denendi, ne işe yaramadı, hangi karar alındı.
+2. `docs/handoffs/` içindeki **en yeni** dosya — son oturumda ne denendi, ne işe
+   yaramadı, hangi karar alındı. **Dosya adına göre alfabetik sıralama yanılır**
+   (`2026-08-20.md` ile `2026-08-20-3.md` karşılaştığında `.` karakteri `-`'den büyük
+   olduğu için eksiz dosya "daha yeni" görünür). Değiştirilme zamanına (mtime) göre sırala.
 3. `git log --oneline -10` ve `git status --short` — gerçek kod durumu STATE.md ile
    tutarlı mı diye kontrol et.
 
