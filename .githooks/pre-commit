@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# .githooks/pre-commit
+# Commit'ten once scripts/doctor.sh calistirir.
+# Hata (exit 2) varsa commit'i engeller. Uyari (exit 1) varsa sadece gosterir,
+# commit devam eder. doctor bulunamazsa sessizce gecer (bozuk kurulumu engellemez).
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+DOCTOR="$REPO_ROOT/scripts/doctor.sh"
+
+if [ ! -f "$DOCTOR" ]; then
+  exit 0
+fi
+
+OUTPUT=$("$DOCTOR" "$REPO_ROOT" 2>&1)
+CODE=$?
+
+echo "$OUTPUT"
+
+if [ "$CODE" -eq 2 ]; then
+  echo ""
+  echo "Commit engellendi: doctor hata buldu (yukarida)." >&2
+  echo "Duzeltip tekrar dene, veya 'git commit --no-verify' ile atla (onerilmez)." >&2
+  exit 1
+fi
+
+exit 0

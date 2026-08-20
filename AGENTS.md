@@ -74,9 +74,24 @@ Birincil platform Windows / PowerShell.
 
 ## Doğrulama
 
-Otomatik doğrulama henüz yok. `scripts/doctor.*` eklendiğinde bu bölüm onu çalıştırma
-talimatıyla güncellenecek. O zamana kadar doğrulama elle yapılır:
-betiği çalıştır, `PLANS.md` ile diski karşılaştır, `AGENTS.md` satır sayısını kontrol et.
+`scripts/doctor.ps1`/`.sh` projenin durumunu kontrol eder: `AGENTS.md` boyutu, `STATE.md`
+tazeliği, `PLANS.md`'deki `[x]` işaretlerinin gerçekliği, skill frontmatter'ları,
+doldurulmamış `<!-- DOLDUR: -->` kalıntıları, kurulu sürüm/hub sürüm farkı, ve **kaynak
+(`skills/`, `hooks/`) ile kurulu kopyanın (`.claude/skills/`, `.claude/hooks/`) senkron
+olup olmadığı**. Elle çalıştırmak için:
+
+```powershell
+.\scripts\doctor.ps1 -Target .
+```
+
+`.githooks/pre-commit` her commit öncesi bunu otomatik çalıştırır; `doctor` hata
+bulursa (çıkış kodu 2) commit engellenir. **Bu otomasyon klonlayan herkeste kendiliğinden
+aktif olmaz** — git güvenlik gereği `core.hooksPath` ayarı klonla birlikte gelmez, her
+klonlayan bir kere elle etkinleştirmeli:
+
+```bash
+git config core.hooksPath .githooks
+```
 
 ## İnsan kontrolü
 
