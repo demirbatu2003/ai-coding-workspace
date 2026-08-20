@@ -108,10 +108,10 @@ Genel/kalıcı kararlar için bkz. docs/DECISIONS.md.
 2. ~~`skills/resume` ile Claude Code'un kendi `/resume`'u çakışıyor mu?~~ **Çözüldü
    (2026-08-20):** çakışma yok. M5 testinde `/resume` çağrıldığında `skills/resume`
    normal şekilde tetiklendi, doğru özet üretti. Detay: `docs/handoffs/2026-08-20-3.md`.
-3. **`.ai-workspace/version.json` gitignore'a girmeli mi?** Şu an girmiyor (`git add -A`
-   onu staged ediyor). Hedef projeler için muhtemelen tutulmalı (doctor'ın "hub
-   güncellenmiş mi" kontrolü buna dayanıyor) ama hub'ın kendi self-install'ı için gereksiz
-   olabilir. Karar verilmedi.
+3. ~~`.ai-workspace/version.json` gitignore'a girmeli mi?~~ **Çözüldü (2026-08-20):**
+   girmez, git'te takip edilir — `doctor`'ın (M4) kaynak/hedef sapmasını (`skills/` ile
+   `.claude/skills/` arasındaki fark gibi) otomatik yakalayabilmesi için gerekli. Detay
+   ve gerekçe `docs/DECISIONS.md`'de.
 
 ## Riskler
 

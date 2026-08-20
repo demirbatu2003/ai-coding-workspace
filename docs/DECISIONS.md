@@ -100,3 +100,20 @@ değil. Sabit "her zaman yeni dosya" kuralı basit ve öngörülebilir.
 **Reddedilen:** (a) Üzerine yazmak — dondurulmuş dosya kuralını çiğner. (b) Yeni içerik
 yoksa no-op — davranışı içerik değerlendirmesine bağlar, test edilmesi zor hale gelir.
 **Tarih:** 2026-08-20
+
+---
+
+## `.ai-workspace/version.json` git'e girer, gitignore'a girmez
+
+**Karar:** `.ai-workspace/version.json` (install script'in ürettiği hubVersion/
+installedAt/installedFiles "kurulum makbuzu") git'te takip edilir, `.gitignore`'a
+eklenmez.
+**Neden:** `scripts/doctor` (M4) bu dosyayı okuyup "kurulu sürüm, hub'ın güncel
+sürümünden eski mi" diye kaynak/hedef sapmasını otomatik yakalayabilecek — tam olarak
+bu oturumda elle bulduğumuz `skills/`↔`.claude/skills/` sapma sorununu bir daha elle
+aramaya gerek kalmadan tespit etmek için. Bu fayda, `installedAt` alanının her yeniden
+kurulumda küçük bir git değişikliği yaratmasından daha değerli görüldü.
+**Reddedilen:** Gitignore'a eklemek — makine-özel/geçici bir dosya gibi davranmak.
+Reddedildi çünkü bu, doctor'ın sapma tespiti yapabilmesi için gereken bilgiyi
+klonlayan/paylaşan herkesten gizlerdi.
+**Tarih:** 2026-08-20
