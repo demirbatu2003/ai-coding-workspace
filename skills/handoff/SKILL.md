@@ -1,11 +1,16 @@
 ---
 name: handoff
 description: Oturumu kapatırken devir belgesi üretir ve STATE.md'yi günceller. Kullanıcı
-  "handoff", "oturumu kapat", "devir", "kaldığımız yeri kaydet" dediğinde veya bağlam
-  dolmak üzereyken çalıştır.
+  "handoff", "oturumu kapat", "devir", "kaldığımız yeri kaydet" dediğinde çalıştır.
+disable-model-invocation: true
 ---
 
 # Handoff
+
+**Yalnızca kullanıcı açıkça istediğinde çalışır** — model kendiliğinden tetikleyemez
+(`disable-model-invocation`). Bağlam dolmaya yaklaşıyorsa kullanıcıya `/handoff`
+çalıştırmasını öner, kendin çalıştırma. Sebep: bu skill git'e kalıcı yazan, geri
+alınması zor bir işlem — kazara tetiklenmemeli.
 
 Bu skill iki ayrı dosyayı günceller — ikisini karıştırma:
 
@@ -22,6 +27,13 @@ Bu skill iki ayrı dosyayı günceller — ikisini karıştırma:
    vazgeçildi, hangi kararlar alındı.
 
 Tahmin etme. Bilinmeyen bilgi varsa "bilinmiyor" yaz.
+
+## Hassas bilgi yazma
+
+Bu iki dosya git'e kalıcı olarak giriyor. Yazmadan önce kontrol et: API key, token,
+şifre, kişisel kimlik bilgisi gibi hassas bir şey bu oturumda paylaşıldı mı. Varsa
+onu **asla** doğrudan yazma — yerine `[REDACTED]` veya genel bir açıklama koy (örn.
+"bir API anahtarı paylaşıldı, dosyaya yazılmadı"). Şüpheliysen riske girme, yazma.
 
 ## docs/handoffs/<YYYY-AA-GG>.md yaz
 

@@ -117,3 +117,20 @@ kurulumda küçük bir git değişikliği yaratmasından daha değerli görüld�
 Reddedildi çünkü bu, doctor'ın sapma tespiti yapabilmesi için gereken bilgiyi
 klonlayan/paylaşan herkesten gizlerdi.
 **Tarih:** 2026-08-20
+
+---
+
+## `/handoff` yalnızca elle çalışır, hassas bilgiyi redakte eder
+
+**Karar:** `skills/handoff/SKILL.md`'ye iki kural eklendi: (1) `disable-model-invocation:
+true` frontmatter alanı — model bu skill'i kendiliğinden tetikleyemez, sadece kullanıcı
+açıkça çağırabilir; (2) yazmadan önce API key/token/şifre/kişisel kimlik gibi hassas
+verinin `[REDACTED]` ile değiştirilmesi zorunlu.
+**Neden:** `mattpocock/skills` reposunun `handoff` skill'i incelenirken iki eksik fark
+edildi. `/handoff` git'e kalıcı yazan, geri alınması zor bir işlem — modelin "bağlam
+doluyor gibi" diye kendiliğinden tetiklemesi riskli, kullanıcı onayı gerektirmeli. Ayrıca
+handoff dosyaları git'e kalıcı girdiği için, konuşmada paylaşılan bir sırrın (API key
+vb.) farkında olmadan commit edilmesi gerçek bir güvenlik riski.
+**Reddedilen:** Redaksiyonu ayrı bir doğrulama adımına bırakmak — riskli, unutulabilir;
+kural skill'in gövdesine, yazma adımından önce yerleştirildi ki atlanamasın.
+**Tarih:** 2026-08-20
