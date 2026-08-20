@@ -47,6 +47,7 @@ $templateMap = @{
     "templates\PLANS.md.tmpl"      = "PLANS.md"
     "templates\STATE.md.tmpl"      = "docs\STATE.md"
     "templates\DECISIONS.md.tmpl"  = "docs\DECISIONS.md"
+    "templates\USAGE.md.tmpl"      = "docs\USAGE.md"
 }
 
 foreach ($src in $templateMap.Keys) {

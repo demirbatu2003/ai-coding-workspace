@@ -164,9 +164,10 @@ ai-coding-workspace/  (HUB — dağıtan)              herhangi-bir-proje/  (HED
 │                                     kopyalanmaz      ├── docs/       │
 │                                                      │   STATE.md   ◄┘
 ├── templates/*.md.tmpl  ──┐                          │   DECISIONS.md
-├── skills/*/SKILL.md      │  install.ps1/.sh          │   handoffs/
-├── hooks/*.ps1 .sh        │  ile kopyalanır  ───────► ├── .claude/
-├── settings/*.fragment    │                           │   ├── skills/   ◄── skills/ kopyası
+├── skills/*/SKILL.md      │  install.ps1/.sh          │   USAGE.md
+├── hooks/*.ps1 .sh        │  ile kopyalanır  ───────► │   handoffs/
+├── settings/*.fragment    │                           ├── .claude/
+│                          │                           │   ├── skills/   ◄── skills/ kopyası
 │                          │                           │   ├── hooks/    ◄── hooks/ kopyası
 ├── scripts/doctor.*       │  hub'ın kendi aracı,      │   └── settings.json
 ├── VERSION                │  hedefe kopyalanmaz       └── .ai-workspace/version.json
