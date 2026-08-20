@@ -109,7 +109,7 @@ Genel/kalıcı kararlar için bkz. docs/DECISIONS.md.
 1. ~~Aynı gün ikinci `/handoff` ne olacak?~~ **Çözüldü (2026-08-20):** her zaman
    `docs/handoffs/<tarih>-N.md` biçiminde yeni dosya üretilir, içerik olsun olmasın.
    Ayrıntı ve gerekçe `docs/DECISIONS.md`'de. `skills/handoff/SKILL.md` bu kurala göre
-   güncellenmeli — henüz yapılmadı.
+   güncellendi.
 2. **`skills/resume` ile Claude Code'un kendi `/resume`'u çakışıyor mu?** Claude Code'un
    `--resume`/`/resume` gibi kendi oturum devam ettirme özelliği var; bizim skill'imiz
    aynı ismi kullanıyor. Hangisi öncelikli, ikisi de mi tetikleniyor — test edilmedi.
