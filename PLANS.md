@@ -66,21 +66,16 @@ altyapısı hub'ı oluşturmak. Kapsamlı içerik için IMPLEMENTATION-PLAN.md.
       **ignore edilmiyor** — bilinçli mi değil mi netleşmedi, bkz. Açık Sorular)
 - [x] Hub kendi kendine kuruldu (`.\install.ps1 -Target .`, gerçek çalıştırma) — skills
       ve hooks `.claude/` altına kopyalandı, `settings.json` doğru JSON kaçışıyla üretildi
-- [ ] **Asıl doğrulama, henüz yapılmadı:** `/handoff` → `/clear` → `/resume` döngüsü.
-      Küçük bir değişiklik yapılacak, `/handoff` çalıştırılıp `docs/handoffs/`'a doğru
-      yazdığı ve `STATE.md`'yi güncellediği görülecek, `/clear` sonrası hook'un otomatik
-      context enjekte edip etmediği gözlemlenecek, `/resume` ile özetin doğruluğu
-      karşılaştırılacak. Bu test geçerse projenin varlık sebebi doğrulanmış olur.
+- [x] **Asıl doğrulama tamamlandı (2026-08-20):** küçük, git'te görülür bir değişiklik
+      yapılıp commit'lendi (`615bb66`), proje kök dizininden yeni bir oturum açıldı,
+      `SessionStart` hook'u otomatik tetiklenip git status'u context'e enjekte etti,
+      `/resume` doğru özet üretti. Detay: `docs/handoffs/2026-08-20-3.md`.
 
 ## Mevcut İlerleme
 
-- Mevcut aşama: M2 ve M3 dosya bazında tamam ama **henüz commit'lenmedi**. M5'in asıl
-  uçtan uca testi (`/handoff`→`/clear`→`/resume`) sırada.
-- Genel durum: `git status` şu an şunları untracked gösteriyor: `install.ps1`, `install.sh`,
-  `hooks/` (4 dosya), `settings/settings.json.fragment`, `.claude/settings.json`,
-  `.ai-workspace/version.json`. Skill yüklemesi artık **canlı doğrulandı** — Claude Code
-  sistem hatırlatmasında 4 skill de (`handoff`, `plan`, `resume`, `review`) doğru
-  description'larıyla listelendi.
+- Mevcut aşama: M0-M3 ve M5 tamam. Sırada M4 (`scripts/doctor.ps1` + `.sh`) var.
+- M5'in uçtan uca testi (`/handoff`→yeni oturum→`/resume`) 2026-08-20'de geçti, detay
+  `docs/handoffs/2026-08-20-3.md`'de.
 
 ## Kararlar
 
@@ -110,9 +105,9 @@ Genel/kalıcı kararlar için bkz. docs/DECISIONS.md.
    `docs/handoffs/<tarih>-N.md` biçiminde yeni dosya üretilir, içerik olsun olmasın.
    Ayrıntı ve gerekçe `docs/DECISIONS.md`'de. `skills/handoff/SKILL.md` bu kurala göre
    güncellendi.
-2. **`skills/resume` ile Claude Code'un kendi `/resume`'u çakışıyor mu?** Claude Code'un
-   `--resume`/`/resume` gibi kendi oturum devam ettirme özelliği var; bizim skill'imiz
-   aynı ismi kullanıyor. Hangisi öncelikli, ikisi de mi tetikleniyor — test edilmedi.
+2. ~~`skills/resume` ile Claude Code'un kendi `/resume`'u çakışıyor mu?~~ **Çözüldü
+   (2026-08-20):** çakışma yok. M5 testinde `/resume` çağrıldığında `skills/resume`
+   normal şekilde tetiklendi, doğru özet üretti. Detay: `docs/handoffs/2026-08-20-3.md`.
 3. **`.ai-workspace/version.json` gitignore'a girmeli mi?** Şu an girmiyor (`git add -A`
    onu staged ediyor). Hedef projeler için muhtemelen tutulmalı (doctor'ın "hub
    güncellenmiş mi" kontrolü buna dayanıyor) ama hub'ın kendi self-install'ı için gereksiz
@@ -125,4 +120,4 @@ Genel/kalıcı kararlar için bkz. docs/DECISIONS.md.
 
 ## Son Güncelleme
 
-2026-08-19
+2026-08-20

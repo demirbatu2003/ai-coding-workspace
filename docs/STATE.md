@@ -4,41 +4,36 @@
 
 ## Hedef
 
-M5'in asıl doğrulama testini tamamlamak: `/handoff` → yeni oturum → `/resume` döngüsünün
-gerçekten çalıştığını, proje kök dizininden açılmış bir Claude Code oturumunda kanıtlamak.
+M5 doğrulama testi geçti. Sırada M4: `scripts/doctor.ps1` + `.sh` yazmak.
 
 ## Mevcut Durum
 
 - Branch: main
-- Working tree: temiz, GitHub'a (`github.com/demirbatu2003/ai-coding-workspace`) push
-  edilmiş durumda
+- Working tree: temiz
 - Build: N/A
-- Test: `/handoff` skill'i bu oturumda canlı olarak tetiklendi ve çalıştı (bu dosya ve
-  `docs/handoffs/2026-08-20.md` onun ürünü). `/resume` henüz denenmedi.
+- Test: M5'in asıl testi (`/handoff` → yeni oturum → `/resume`) uçtan uca tamamlandı ve
+  geçti. Yeni oturum proje kök dizininden açıldı, `SessionStart` hook'u otomatik
+  tetiklendi, `/resume` doğru özet üretti, `skills/resume` yerleşik resume ile
+  çakışmadı.
 
 ## Devam Eden İş
 
-Yok. M5 testinin geri kalanı bir sonraki oturuma bırakıldı.
+Yok.
 
 ## Sonraki Adımlar
 
-1. Küçük, git'te görülür bir değişiklik yap (henüz yapılmadı).
-2. Proje kök dizininden (`cd ai-coding-workspace`, home dizininden değil) yeni bir
-   `claude` oturumu aç.
-3. O oturumda `/resume` dene — `SessionStart` hook'u otomatik tetikleniyor mu, özet
-   doğru mu kontrol et.
-4. `skills/resume`'un Claude Code'un yerleşik resume özelliğiyle çakışıp çakışmadığını
-   bu testte gözlemle.
-5. Test geçerse M4'e (doctor) geç.
+1. `PLANS.md` § M5'teki son maddeyi `[x]` işaretle (dosyanın gerçekten doğru
+   olduğunu doğrulayarak).
+2. `scripts/doctor.ps1` + `.sh` yaz (M4) — `.ai-workspace/version.json`'ı referans
+   alacak.
+3. M4'e başlamadan önce Açık Problem #1'i (aşağıda) karara bağlamak faydalı olur,
+   çünkü doctor'ın version.json'a nasıl davranacağı buna bağlı.
 
 ## Açık Problemler
 
-İki açık tasarım sorusu kaldı, ayrıntı `PLANS.md` § Açık Sorular'da (madde 1 bu oturumda
-çözüldü — bkz. docs/DECISIONS.md):
-1. `skills/resume` adının Claude Code'un yerleşik resume'uyla çakışması — hâlâ
-   gözlemlenmedi.
-2. `.ai-workspace/version.json` gitignore'a girmeli mi — karar verilmedi.
+1. `.ai-workspace/version.json` gitignore'a girmeli mi — karar verilmedi. Ayrıntı
+   `PLANS.md` § Açık Sorular madde 3'te.
 
 ## Son Güncelleme
 
-2026-08-20 (aynı gün 2. handoff)
+2026-08-20 (aynı gün 3. handoff)
