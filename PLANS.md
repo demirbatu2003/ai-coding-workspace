@@ -84,10 +84,36 @@ Kapsam (referans, aktif görev değil): `.codex/config.toml`, skill'lerin
 `.agents/skills`'e köprülenmesi, `AGENTS.md`'nin Codex'in 32KB sınırının altında
 kaldığının `doctor`'da kontrolü.
 
+### M7 — Gerçek proje testi (SIRADAKİ İŞ)
+
+Hub'ı gerçek, ayrı bir projeye kurup uçtan uca kullanmak. M5 self-install'dı (hub kendi
+kendine kuruldu); bu ise hub'ın **başka bir repoda** gerçekten çalıştığının testi.
+
+**Konum kararı:** test projesi hub'ın ALTINA değil, KARDEŞİ olarak açılır
+(`C:\Users\batuh\proje-a`). Gerekçe: hub≠hedef kuralı, git iç içe geçmesi, hub'ın
+`AGENTS.md`'sinin hedefe sızması, ve iç içe konfigürasyonun gerçek kullanımı temsil
+etmemesi. Kurulan proje hub'a hiç erişmiyor — `${CLAUDE_PROJECT_DIR}` ve
+`git rev-parse --show-toplevel` hep hedefin kendisini çözümlüyor, yani kurulum sonrası
+hedef kendi kendine yeterli.
+
+- [ ] `C:\Users\batuh\proje-a` oluştur, `git init`
+- [ ] Hub'dan kur: `.\install.ps1 -Target ..\proje-a`
+- [ ] `<!-- DOLDUR: -->` alanlarını elle doldur (AGENTS.md, PLANS.md, STATE.md,
+      DECISIONS.md)
+- [ ] Projede gerçek küçük bir şey geliştir (bomboş proje handoff/resume testini
+      yapaylaştırır — anlatacak bir "durum" olmalı)
+- [ ] `/handoff` → oturumu kapat → yeni oturum → `/resume` döngüsünü gerçek projede dene
+- [ ] Hub'dan uzaktan sağlık kontrolü: `.\scripts\doctor.ps1 -Target ..\proje-a`
+
+**Beklenen bulgu:** `doctor` ve `.githooks/pre-commit` install ile kopyalanmıyor
+(`docs/USAGE.md`'de dürüstçe belirtilmiş sınır). Gerçek kullanımda ilk canı sıkacak şey
+bu olacak. Test bunu somutlaştırınca, `install.ps1`'i genişletip genişletmeyeceğimize
+gerçek deneyime dayanarak karar verilecek.
+
 ## Mevcut İlerleme
 
 - Mevcut aşama: M0-M5 tamam ve doğrulandı. M6 (Codex) kullanıcı isteyene kadar
-  ertelendi. Şu an aktif bir görev yok.
+  ertelendi. **Sıradaki iş M7 — gerçek proje testi** (yukarıda), henüz başlanmadı.
 - M5'in uçtan uca testi (`/handoff`→yeni oturum→`/resume`) 2026-08-20'de geçti, detay
   `docs/handoffs/2026-08-20-3.md`'de.
 

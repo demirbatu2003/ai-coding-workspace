@@ -4,35 +4,40 @@
 
 ## Hedef
 
-Yok — M0-M5 tamamlandı ve doğrulandı, M6 (Codex) kullanıcı isteyene kadar ertelendi.
-Proje şu an aktif bir hedefsiz, durgun durumda.
+M7 — hub'ı gerçek, ayrı bir projeye (`C:\Users\batuh\proje-a`) kurup uçtan uca kullanmak.
+M5 self-install'dı; bu, hub'ın başka bir repoda gerçekten çalıştığının testi.
 
 ## Mevcut Durum
 
 - Branch: main
-- Working tree: temiz, her şey GitHub'a push edilmiş
-  (github.com/demirbatu2003/ai-coding-workspace)
+- Working tree: temiz. GitHub'a push edilmiş son commit `fd9fbfa`; bu oturumun
+  handoff + PLANS.md değişikliği henüz push edilmedi.
 - Build: N/A
-- Test: `doctor` temiz rapor veriyor (0 hata, 0 uyarı), pre-commit hook her commit'te
-  otomatik doğrulanıyor.
+- Test: `doctor` temiz (0 hata, 0 uyarı), pre-commit hook her commit'te otomatik çalışıyor.
 
 ## Devam Eden İş
 
-Yok.
+Yok — M7 planlandı ama henüz başlanmadı.
 
 ## Sonraki Adımlar
 
-Acil bir şey yok. Devam edilirse olası yönler (öncelik sırası yok, kullanıcı seçer):
+1. `C:\Users\batuh\proje-a` oluştur, içinde `git init` çalıştır.
+2. Hub kökünden kur: `.\install.ps1 -Target ..\proje-a`
+3. proje-a'daki `<!-- DOLDUR: -->` alanlarını elle doldur (AGENTS.md, PLANS.md,
+   docs/STATE.md, docs/DECISIONS.md).
+4. proje-a'da küçük ama gerçek bir şey geliştir — ne olacağı henüz belirlenmedi,
+   kullanıcıya sorulacak (boş projede handoff/resume testi yapay kalır).
+5. proje-a'da `/handoff` → oturumu kapat → yeni oturum → `/resume` döngüsünü dene.
+6. Hub'dan uzaktan: `.\scripts\doctor.ps1 -Target ..\proje-a`
 
-1. Hub'ı gerçek bir projeye kurup uçtan uca gerçek kullanım denemesi.
-2. `install.ps1`/`.sh`'i genişletip `scripts/doctor.*` ve `.githooks/`'u da hedefe
-   kopyalar hale getirmek — şu an sadece hub'ın kendi reposunda çalışıyorlar.
-3. M6 (Codex katmanı) — yalnızca kullanıcı açıkça isterse.
+Tam adımlar ve konum kararının gerekçesi `PLANS.md` § M7'de.
 
 ## Açık Problemler
 
-Yok. Üç açık tasarım sorusunun üçü de çözüldü (bkz. docs/DECISIONS.md).
+1. proje-a'da ne geliştirileceği belirlenmedi (adım 4).
+2. Bilinen sınır: `doctor` ve `.githooks/pre-commit` install ile hedefe kopyalanmıyor —
+   M7 testinin bunu somutlaştırması bekleniyor.
 
 ## Son Güncelleme
 
-2026-08-20 (aynı gün 4. handoff)
+2026-08-20 (aynı gün 5. handoff)
