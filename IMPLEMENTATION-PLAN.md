@@ -275,9 +275,12 @@ Bu test geçerse proje amacına ulaşmıştır. Geçmezse geri kalan her şey de
 
 ---
 
-## M6 — Codex katmanı (sonraki sürüm)
+## M6 — Codex katmanı (ERTELENDİ)
 
-`AGENTS.md` zaten tek kaynak olduğu için Codex bugün de temel seviyede çalışıyor. Sonra:
+**Kullanıcı kararı (2026-08-20): bu aşamaya başlanmayacak, kullanıcı açıkça "Codex'i
+yapalım" demeden hiçbir Codex işi yapılmaz.** `AGENTS.md` zaten tek kaynak olduğu için
+Codex bugün de temel seviyede çalışıyor — yani M6 olmadan da hub kullanılabilir durumda.
+Aşağıdaki liste yalnızca referans, aktif bir görev değil:
 
 - [ ] `.codex/config.toml`
 - [ ] Skill'lerin `.agents/skills`'e köprülenmesi
@@ -300,12 +303,12 @@ Bu test geçerse proje amacına ulaşmıştır. Geçmezse geri kalan her şey de
 
 ## İlerleme
 
-- [ ] M0 — Hub'ın kendi temeli
-- [ ] M1 — Skills
-- [ ] M2 — Hooks
-- [ ] M3 — install script
-- [ ] M4 — doctor
-- [ ] M5 — Dogfooding + uçtan uca test
-- [ ] M6 — Codex katmanı
+- [x] M0 — Hub'ın kendi temeli
+- [x] M1 — Skills
+- [x] M2 — Hooks
+- [x] M3 — install script
+- [x] M4 — doctor
+- [x] M5 — Dogfooding + uçtan uca test (2026-08-20'de geçti)
+- [ ] M6 — Codex katmanı — **ertelendi**, kullanıcı isteyene kadar başlanmayacak
 
-Son güncelleme: 2026-08-15
+Son güncelleme: 2026-08-20

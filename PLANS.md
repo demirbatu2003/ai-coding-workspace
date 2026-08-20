@@ -57,7 +57,11 @@ altyapısı hub'ı oluşturmak. Kapsamlı içerik için IMPLEMENTATION-PLAN.md.
 
 ### M4 — doctor
 
-- [ ] scripts/doctor.ps1 + .sh
+- [x] scripts/doctor.ps1 + .sh — 8 kontrol (AGENTS.md boyutu, STATE.md tazeliği, PLANS.md
+      tutarlılığı, skill frontmatter, DOLDUR kalıntısı, versiyon farkı, settings.json hook
+      yolları, kaynak/hedef sapması). İkisi de test edildi, aynı sonucu veriyor.
+- [x] `.githooks/pre-commit` + `core.hooksPath` — her commit öncesi doctor'ı otomatik
+      çalıştırır, hata varsa engeller. Gerçek `git commit` ile canlı doğrulandı.
 
 ### M5 — Dogfooding
 
@@ -71,9 +75,19 @@ altyapısı hub'ı oluşturmak. Kapsamlı içerik için IMPLEMENTATION-PLAN.md.
       `SessionStart` hook'u otomatik tetiklenip git status'u context'e enjekte etti,
       `/resume` doğru özet üretti. Detay: `docs/handoffs/2026-08-20-3.md`.
 
+### M6 — Codex katmanı (ERTELENDİ)
+
+**Kullanıcı kararı (2026-08-20): kullanıcı açıkça "Codex'i yapalım" demeden bu aşamaya
+hiç başlanmayacak.** `AGENTS.md` zaten tek kaynak olduğu için Codex bugün de temel
+seviyede çalışıyor — M6 olmadan hub kullanılabilir durumda, ertelemenin bir bedeli yok.
+Kapsam (referans, aktif görev değil): `.codex/config.toml`, skill'lerin
+`.agents/skills`'e köprülenmesi, `AGENTS.md`'nin Codex'in 32KB sınırının altında
+kaldığının `doctor`'da kontrolü.
+
 ## Mevcut İlerleme
 
-- Mevcut aşama: M0-M3 ve M5 tamam. Sırada M4 (`scripts/doctor.ps1` + `.sh`) var.
+- Mevcut aşama: M0-M5 tamam ve doğrulandı. M6 (Codex) kullanıcı isteyene kadar
+  ertelendi. Şu an aktif bir görev yok.
 - M5'in uçtan uca testi (`/handoff`→yeni oturum→`/resume`) 2026-08-20'de geçti, detay
   `docs/handoffs/2026-08-20-3.md`'de.
 
