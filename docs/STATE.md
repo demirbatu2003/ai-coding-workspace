@@ -4,17 +4,17 @@
 
 ## Hedef
 
-M5 doğrulama testi geçti. Sırada M4: `scripts/doctor.ps1` + `.sh` yazmak.
+Yok — M0-M5 tamamlandı ve doğrulandı, M6 (Codex) kullanıcı isteyene kadar ertelendi.
+Proje şu an aktif bir hedefsiz, durgun durumda.
 
 ## Mevcut Durum
 
 - Branch: main
-- Working tree: temiz
+- Working tree: temiz, her şey GitHub'a push edilmiş
+  (github.com/demirbatu2003/ai-coding-workspace)
 - Build: N/A
-- Test: M5'in asıl testi (`/handoff` → yeni oturum → `/resume`) uçtan uca tamamlandı ve
-  geçti. Yeni oturum proje kök dizininden açıldı, `SessionStart` hook'u otomatik
-  tetiklendi, `/resume` doğru özet üretti, `skills/resume` yerleşik resume ile
-  çakışmadı.
+- Test: `doctor` temiz rapor veriyor (0 hata, 0 uyarı), pre-commit hook her commit'te
+  otomatik doğrulanıyor.
 
 ## Devam Eden İş
 
@@ -22,18 +22,17 @@ Yok.
 
 ## Sonraki Adımlar
 
-1. `PLANS.md` § M5'teki son maddeyi `[x]` işaretle (dosyanın gerçekten doğru
-   olduğunu doğrulayarak).
-2. `scripts/doctor.ps1` + `.sh` yaz (M4) — `.ai-workspace/version.json`'ı referans
-   alacak.
-3. M4'e başlamadan önce Açık Problem #1'i (aşağıda) karara bağlamak faydalı olur,
-   çünkü doctor'ın version.json'a nasıl davranacağı buna bağlı.
+Acil bir şey yok. Devam edilirse olası yönler (öncelik sırası yok, kullanıcı seçer):
+
+1. Hub'ı gerçek bir projeye kurup uçtan uca gerçek kullanım denemesi.
+2. `install.ps1`/`.sh`'i genişletip `scripts/doctor.*` ve `.githooks/`'u da hedefe
+   kopyalar hale getirmek — şu an sadece hub'ın kendi reposunda çalışıyorlar.
+3. M6 (Codex katmanı) — yalnızca kullanıcı açıkça isterse.
 
 ## Açık Problemler
 
-1. `.ai-workspace/version.json` gitignore'a girmeli mi — karar verilmedi. Ayrıntı
-   `PLANS.md` § Açık Sorular madde 3'te.
+Yok. Üç açık tasarım sorusunun üçü de çözüldü (bkz. docs/DECISIONS.md).
 
 ## Son Güncelleme
 
-2026-08-20 (aynı gün 3. handoff)
+2026-08-20 (aynı gün 4. handoff)
