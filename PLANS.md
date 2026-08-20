@@ -106,10 +106,10 @@ Genel/kalıcı kararlar için bkz. docs/DECISIONS.md.
 
 ## Açık Sorular
 
-1. **Aynı gün ikinci `/handoff` ne olacak?** `docs/handoffs/2026-08-19.md` zaten var (ilk
-   handoff, elle yazılmıştı). Bugün tekrar `/handoff` çalıştırılırsa üzerine mi yazılacak,
-   yoksa `2026-08-19-2.md` gibi bir isimlendirme mi gerekecek? Henüz karar verilmedi —
-   M5 testinde gerçek davranış gözlemlenip karar bağlanacak.
+1. ~~Aynı gün ikinci `/handoff` ne olacak?~~ **Çözüldü (2026-08-20):** her zaman
+   `docs/handoffs/<tarih>-N.md` biçiminde yeni dosya üretilir, içerik olsun olmasın.
+   Ayrıntı ve gerekçe `docs/DECISIONS.md`'de. `skills/handoff/SKILL.md` bu kurala göre
+   güncellenmeli — henüz yapılmadı.
 2. **`skills/resume` ile Claude Code'un kendi `/resume`'u çakışıyor mu?** Claude Code'un
    `--resume`/`/resume` gibi kendi oturum devam ettirme özelliği var; bizim skill'imiz
    aynı ismi kullanıyor. Hangisi öncelikli, ikisi de mi tetikleniyor — test edilmedi.

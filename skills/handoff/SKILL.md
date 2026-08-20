@@ -11,7 +11,8 @@ Bu skill iki ayrı dosyayı günceller — ikisini karıştırma:
 
 - `docs/STATE.md` — üzerine yazılır, "şu an neredeyiz" sorusunun cevabı.
 - `docs/handoffs/<bugünün-tarihi>.md` — yeni dosya, bir daha düzenlenmez, "bu oturumda
-  ne oldu" sorusunun cevabı.
+  ne oldu" sorusunun cevabı. Aynı gün için zaten bir dosya varsa üzerine yazılmaz,
+  `-2`, `-3` gibi artan bir ekle yeni dosya açılır (bkz. aşağıda).
 
 ## Önce topla
 
@@ -31,6 +32,10 @@ Alınan Kararlar, Sonraki Oturuma Not, İlgili Dosyalar.
 - Git'ten okunabilecek şeyi tekrarlama (dosya listesi, diff, commit mesajı).
 - "Denendi, Olmadı" bölümü boş geçilmez — hiçbir şey denenmediyse "yok" yaz.
 - Bu dosya bir kez yazılır. Yazıldıktan sonra bir daha düzenlenmez.
+- `docs/handoffs/<bugünün-tarihi>.md` zaten varsa (aynı gün ikinci+ çağrı), üzerine
+  yazma. `docs/handoffs/<bugünün-tarihi>-2.md`, yoksa `-3` diye artan ekle yeni dosya
+  aç — aradan geçen sürede yeni içerik olsun olmasın, her çağrı yeni dosya üretir
+  (gerekçe: docs/DECISIONS.md, "Aynı gün ikinci `/handoff` her zaman yeni dosya üretir").
 
 ## docs/STATE.md güncelle
 
@@ -52,4 +57,6 @@ alternatif formatında). Handoff'lar zamanla arşive düşer, DECISIONS.md kalı
 ## Doğrulama
 
 Yazdıktan sonra: `docs/STATE.md` 60 satırı geçmiyor mu, `docs/handoffs/` altında bugünün
-tarihiyle tek bir dosya var mı, `PLANS.md`'de bu oturumda biten işler `[x]` işaretli mi.
+tarihiyle en az bir dosya var mı (aynı gün birden fazla çağrıldıysa `-N` ekli olanlar da
+dahil, hiçbiri üzerine yazılmamış mı), `PLANS.md`'de bu oturumda biten işler `[x]`
+işaretli mi.

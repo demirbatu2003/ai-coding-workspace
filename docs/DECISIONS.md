@@ -69,3 +69,34 @@ komut çalıştığında yükleniyor.
 **Reddedilen:** (a) Doldurunca yorumu silmek — kural zamanla kaybolur. (b) Yorumu kalıcı
 bırakmak — her oturumda gereksiz token.
 **Tarih:** 2026-08-19
+
+---
+
+## install.sh'te JSON birleştirme için python3'e bağımlı kalınıyor
+
+**Karar:** `install.sh`, `.claude/settings.json`'ı birleştirirken `python3` kullanır.
+`python3` yoksa hiçbir şeye dokunmadan uyarıp atlar; asla ham metin üzerinde JSON
+değiştirmeye çalışmaz.
+**Neden:** Windows yollarındaki `\` gibi karakterler JSON'da geçersiz kaçış dizisi
+oluşturabilir. Saf bash'te güvenli bir JSON parser yok; ham metin manipülasyonu
+kullanıcının var olan `settings.json`'ını bozma riski taşır — bu, projenin "asla mevcut
+ayarları ezme" kuralını ihlal eder. `python3` Linux/Mac'te neredeyse her zaman kurulu.
+**Reddedilen:** (a) Ham metin string-replace ile JSON üretmek — geçersiz JSON riski.
+(b) `jq` gibi ek bir bağımlılık eklemek — daha az yaygın, ayrı bir kurulum adımı ister.
+**Tarih:** 2026-08-20
+
+---
+
+## Aynı gün ikinci `/handoff` her zaman yeni dosya üretir
+
+**Karar:** `/handoff` aynı gün içinde birden fazla kez çalıştırılırsa, her çağrı
+`docs/handoffs/<tarih>-N.md` biçiminde yeni bir dosya üretir (N=2,3,…; ilk çağrı eksiz
+`<tarih>.md`). Aradan geçen sürede yeni içerik olsun olmasın — üzerine yazma yok, no-op
+yok.
+**Neden:** Handoff dosyaları "bir kez yazılır, düzenlenmez" kuralına tabi; üzerine
+yazmak bu kuralı çiğner. No-op ise `/handoff` çağrısının davranışını konuşmanın
+içeriğine göre belirsizleştirir (bazen dosya üretir, bazen üretmez) — deterministik
+değil. Sabit "her zaman yeni dosya" kuralı basit ve öngörülebilir.
+**Reddedilen:** (a) Üzerine yazmak — dondurulmuş dosya kuralını çiğner. (b) Yeni içerik
+yoksa no-op — davranışı içerik değerlendirmesine bağlar, test edilmesi zor hale gelir.
+**Tarih:** 2026-08-20
