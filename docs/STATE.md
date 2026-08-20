@@ -10,8 +10,8 @@ M5 self-install'dı; bu, hub'ın başka bir repoda gerçekten çalıştığını
 ## Mevcut Durum
 
 - Branch: main
-- Working tree: temiz. GitHub'a push edilmiş son commit `fd9fbfa`; bu oturumun
-  handoff + PLANS.md değişikliği henüz push edilmedi.
+- Working tree: temiz, her şey GitHub'a push edilmiş
+  (github.com/demirbatu2003/ai-coding-workspace).
 - Build: N/A
 - Test: `doctor` temiz (0 hata, 0 uyarı), pre-commit hook her commit'te otomatik çalışıyor.
 
